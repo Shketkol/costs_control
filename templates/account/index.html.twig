@@ -1,0 +1,19 @@
+{% extends "account.html.twig" %}
+
+{% block title %}{{ parent() }}Registration{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{# Use theme for form #}
+{% form_theme form 'form/bootstrap_material.html.twig' %}
+
+{# Render content #}
+{% block content %}
+
+<div class="white-bix">
+	
+</div>
+
+{% endblock %}

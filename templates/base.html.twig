@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+		<link rel="icon" type="image/png" sizes="16x16" href="/plugins/images/favicon.ico">
+        
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        {% block stylesheets %}
+        	<link rel="stylesheet" href="{{ asset('/build/app.css') }}">
+        {% endblock %}
+    </head>
+    <body class="fix-header">
+    	<!-- ============================================================== -->
+		<!-- Preloader -->
+		<!-- ============================================================== -->
+		<div class="preloader">
+		    <svg class="circular" viewBox="25 25 50 50">
+		        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+		    </svg>
+		</div>
+
+		<div id="wrapper">
+
+			{% include '_nav_bar.html.twig' %}
+			{% include '_left_bar.html.twig' %}
+
+		    <div id="page-wrapper">
+		        <div class="container-fluid">
+
+		            {% block content %}{% endblock %}
+
+		            <!-- <?= $this->render('_right_bar') ?> -->
+
+		        </div>
+
+		        <!-- <?= $this->render('_footer') ?> -->
+
+		    </div>
+		</div>
+
+        {% block javascripts %}
+            <script src="{{ asset('/build/app.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

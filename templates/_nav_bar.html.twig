@@ -1,0 +1,127 @@
+<nav class="navbar navbar-default navbar-static-top m-b-0">
+    <div class="navbar-header">
+        <div class="top-left-part">
+            <!-- Logo -->
+            <a class="logo" href="{{ path('index_page') }}">
+                <!-- Logo icon image, you can use font-icon also -->
+                <b>
+                    <!--This is dark logo icon-->
+                    <img src="/plugins/images/admin-logo.png" alt="home" class="dark-logo" />
+                    <!--This is light logo icon-->
+                    <img src="/plugins/images/admin-logo-dark.png" alt="home" class="light-logo" />
+                </b>
+                <!-- Logo text image you can use text also -->
+                <span class="hidden-xs">
+                        <!--This is dark logo text-->
+                    <img src="/plugins/images/admin-text.png" alt="home" class="dark-logo" />
+                    <!--This is light logo text-->
+                    <img src="/plugins/images/admin-text-dark.png" alt="home" class="light-logo" />
+                </span>
+            </a>
+        </div>
+        <!-- /Logo -->
+        <ul class="nav navbar-top-links navbar-left">
+            <li><a href="javascript:void(0)" class="open-close waves-effect waves-light visible-xs"><i class="ti-close ti-menu"></i></a></li>
+            <li class="dropdown hidden">
+                <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"> <i class="mdi mdi-gmail"></i>
+                    <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                </a>
+                <ul class="dropdown-menu mailbox animated bounceInDown">
+                    <li>
+                        <div class="drop-title">You have 4 new messages</div>
+                    </li>
+                    <li>
+                        <div class="message-center">
+                            <a href="#">
+                                <div class="user-img"> <img src="/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
+                            </a>
+                            <a href="#">
+                                <div class="user-img"> <img src="/plugins/images/users/sonu.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
+                            </a>
+                            <a href="#">
+                                <div class="user-img"> <img src="/plugins/images/users/arijit.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
+                            </a>
+                            <a href="#">
+                                <div class="user-img"> <img src="/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="text-center" href="javascript:void(0);"> <strong>See all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+        </ul>
+
+        <ul class="nav navbar-top-links navbar-right pull-right users_menu">
+            <li class="dropdown">
+                <a class="dropdown-toggle users_menu_button" data-toggle="dropdown" href="#">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 18 14"
+                            width="18px" height="14px">
+                        <path fill-rule="evenodd"  opacity="0.22" fill="rgb(255, 255, 255)"
+                              d="M-0.000,-0.000 L-0.000,1.994 L18.000,1.994 L18.000,-0.000 L-0.000,-0.000 ZM-0.000,7.997 L18.000,7.997 L18.000,6.003 L-0.000,6.003 L-0.000,7.997 ZM-0.000,14.000 L18.000,14.000 L18.000,12.006 L-0.000,12.006 L-0.000,14.000 Z"/>
+                    </svg>
+                    <span class="first_name_users hidden-xs">Test first name</span>
+                    <span class="caret"></span>
+                </a>
+
+                    <ul class="dropdown-menu dropdown-user dropdown_flex">
+                                <li class="active_project">
+                                    <a href="#" class="dropdown_flex_link">
+                                        <span class="flex_span">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 19 19"
+                                            width="19px" height="19px">
+                                            <path fill-rule="evenodd"  fill="rgb(59, 62, 74)"
+                                                  d="M9.500,-0.000 C4.253,-0.000 -0.000,4.253 -0.000,9.500 C-0.000,14.747 4.253,19.000 9.500,19.000 C14.747,19.000 19.000,14.747 19.000,9.500 C19.000,4.253 14.747,-0.000 9.500,-0.000 ZM5.203,16.139 L5.854,12.948 L5.863,12.896 C5.969,12.109 6.648,11.516 7.441,11.516 L7.914,11.516 C8.399,11.766 8.935,11.875 9.500,11.875 C10.065,11.875 10.601,11.766 11.085,11.516 L11.630,11.516 C12.423,11.516 13.101,12.109 13.207,12.896 L13.861,16.101 C12.609,16.930 11.111,17.417 9.500,17.417 C7.916,17.417 6.442,16.944 5.203,16.139 ZM9.500,10.292 C8.314,10.292 7.125,8.873 7.125,7.521 C7.125,6.249 8.228,5.146 9.500,5.146 C10.772,5.146 11.875,6.249 11.875,7.521 C11.875,8.873 10.685,10.292 9.500,10.292 ZM15.239,14.938 L14.773,12.656 C14.599,11.449 13.747,10.477 12.639,10.102 C13.109,9.397 13.458,8.378 13.458,7.521 C13.458,5.373 11.648,3.562 9.500,3.562 C7.352,3.562 5.542,5.373 5.542,7.521 C5.542,8.386 5.896,9.412 6.374,10.121 C5.294,10.510 4.469,11.470 4.298,12.656 L3.819,15.001 C2.438,13.575 1.583,11.637 1.583,9.500 C1.583,5.135 5.135,1.583 9.500,1.583 C13.865,1.583 17.417,5.135 17.417,9.500 C17.417,11.606 16.585,13.518 15.239,14.938 Z"/>
+                                        </svg>
+                                            Project name
+                                        </span>
+
+                                        <span class="label label_rights label-rouded label-warning">administrator</span>
+                                    </a>
+                                </li>
+
+                        <li>
+                            <a href="#" class="dropdown_flex_link">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 19 19"
+                                        width="19px" height="19px">
+                                    <path fill-rule="evenodd"  fill="rgb(59, 62, 74)"
+                                          d="M19.000,8.134 L17.508,4.191 L15.055,3.986 L14.871,1.528 L10.946,-0.000 L8.899,1.925 L6.563,0.364 L2.943,2.520 L3.198,5.320 L0.532,6.202 L-0.000,10.384 L2.361,11.907 L1.413,14.554 L4.378,17.548 L7.031,16.623 L8.531,19.000 L12.713,18.505 L13.618,15.843 L16.412,16.123 L18.597,12.518 L17.059,10.166 L19.000,8.134 ZM15.576,14.448 L13.776,14.267 L12.523,14.142 L12.118,15.333 L11.535,17.050 L9.337,17.310 L8.370,15.778 L7.698,14.713 L6.509,15.128 L4.800,15.724 L3.240,14.148 L3.852,12.441 L4.275,11.257 L3.219,10.576 L1.696,9.594 L1.976,7.392 L3.696,6.823 L4.889,6.428 L4.775,5.176 L4.611,3.370 L6.514,2.236 L8.019,3.242 L9.066,3.941 L9.984,3.079 L11.303,1.838 L13.367,2.642 L13.476,4.104 L13.577,5.451 L14.923,5.563 L16.381,5.686 L17.166,7.762 L15.914,9.072 L15.046,9.981 L15.734,11.033 L16.726,12.550 L15.576,14.448 ZM10.791,6.181 C10.367,6.016 9.930,5.937 9.501,5.937 C8.075,5.938 6.729,6.800 6.181,8.209 C5.468,10.042 6.376,12.106 8.209,12.819 C8.633,12.984 9.070,13.062 9.499,13.062 C10.925,13.062 12.271,12.200 12.819,10.791 C13.532,8.958 12.624,6.894 10.791,6.181 ZM11.344,10.217 C11.045,10.984 10.321,11.479 9.499,11.479 C9.255,11.479 9.014,11.434 8.783,11.344 C8.290,11.152 7.902,10.780 7.689,10.297 C7.476,9.813 7.465,9.275 7.656,8.783 C7.954,8.016 8.679,7.521 9.501,7.521 C9.745,7.521 9.986,7.566 10.217,7.656 C10.709,7.848 11.098,8.220 11.311,8.703 C11.523,9.187 11.535,9.725 11.344,10.217 Z"/>
+                                </svg>
+                                Профиль
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="dropdown_flex_link">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 19 19"
+                                        width="19px" height="16px">
+                                    <path fill-rule="evenodd"  fill="rgb(59, 62, 74)"
+                                          d="M15.833,7.200 L6.729,7.200 L6.729,8.800 L15.833,8.800 L12.667,12.000 L13.854,13.200 L19.000,8.000 L13.854,2.800 L12.667,4.000 L15.833,7.200 ZM11.083,10.400 L9.500,10.400 L9.500,14.400 L1.583,14.400 L1.583,1.600 L9.500,1.600 L9.500,5.600 L11.083,5.600 L11.083,-0.000 L0.003,-0.000 L-0.000,16.000 L11.083,16.000 L11.083,10.400 Z"/>
+                                </svg>
+                                Выйти
+                            </a>
+                        </li>
+                    </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- End Top Navigation -->

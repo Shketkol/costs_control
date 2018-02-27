@@ -1,0 +1,6 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+	<h1>Your lucky number is {{ number }}</h1>
+	<a href="{{ logout_path(key = null) }}">Logout</a>
+{% endblock content %}

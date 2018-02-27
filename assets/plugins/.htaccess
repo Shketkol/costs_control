@@ -1,0 +1,7 @@
+<IfModule mod_autoindex.c>
+ Options -Indexes
+</IfModule>
+<IfModule mod_rewrite.c>
+Options +FollowSymlinks
+RewriteEngine off
+</IfModule>

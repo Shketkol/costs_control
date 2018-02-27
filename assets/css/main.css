@@ -1,0 +1,254 @@
+html, body {
+    background: #edf1f5;
+}
+
+.panel {
+    margin-bottom: 15px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+#side-menu ul > li > a.active {
+    font-weight: 400 !important;
+}
+
+#side-menu > li > a{
+    padding-right: 23px;
+}
+
+.new-login-register {
+    position: static;
+    height: 100%;
+}
+.new-login-register .lg-info-panel {
+    top: 0
+}
+
+.error-summary {
+    color: #fff !important;
+    font-size: 13px;
+    line-height: 10px;
+    margin-bottom: 20px;
+}
+.form-horizontal .form-group {
+    margin-bottom: 15px;
+}
+.new-login-register .new-login-box .new-lg-form label {
+    font-size: 11px;
+    /*text-transform: none;*/
+}
+input:-webkit-autofill{
+    box-shadow:inset 0 0 0 1000px #fff;
+}
+
+small ol {
+    margin-top: 10px;
+    padding-left: 15px;
+}
+small ol li {
+    margin-bottom: 10px;
+}
+.w500 {
+    width: 500px;
+}
+
+.grid-view th a {
+    color: #666666 !important;
+}
+
+.grid-view .filters {
+    background-color: #f7fafc;
+}
+.pagination {
+    margin: 10px 0 20px;
+    padding: 0 20px;
+}
+
+.pagination > li > a, .pagination > li > span {
+    color: #666666;
+    border: 0;
+    margin-left: 2px;
+    padding: 6px 13px;
+}
+
+.btn-br0 {
+    border-radius: 0px !important;
+}
+
+.edit_scen{
+    font-size: 13px;
+}
+
+.m-t-3{
+    margin-top: 3px;
+}
+
+ul.wallet-list li{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 14px;
+}
+
+ul.wallet-list li i{
+    font-size: 20px;
+}
+
+.disabled{
+    opacity: 0.5;
+    position: relative;
+}
+
+.disabled:after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+
+.white-box .col-in h3{
+    font-size: 30px;
+}
+
+.white-boxes .white-box .btn-success{
+    display: none;
+}
+
+.white-boxes .white-box:last-child .btn-success{
+    display: inline-block;
+}
+
+.white-box .title{
+    margin-top: 0;
+    border-bottom: 1px solid rgba(120, 130, 140, 0.13);
+    padding-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: 0 -25px 30px;
+}
+
+.list_title{
+    cursor: pointer;
+}
+
+.list_title a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.list_title .fa{
+    opacity: 0;
+}
+
+.list_title:hover .fa{
+    opacity: 1;
+}
+
+.js_switch_box select.active{
+    display: none;
+}
+.js_switch_box input.disable{
+    display: none;
+}
+.js_switch_box label{
+    display: inline-block;
+    padding-left: 5px;
+    position: relative;
+    font-weight: 400;
+}
+
+.tooltip-inner {
+    white-space:pre-wrap;
+}
+.dropbtn{
+    background-color: transparent;
+    border: none;
+}
+.table-responsive{
+    overflow: inherit;
+    border: none;
+}
+
+.dropdown-menu{
+    display: none;
+
+}
+.dropdown{
+    display: inline-block;
+}
+/*.dropdown:hover .dropdown-menu {*/
+    /*display: block;*/
+/*}*/
+
+.dropdown:hover .dropdown-menu_hover{
+    display: block
+}
+
+.dropdown-menu > li > a{
+    font-size: 12px;
+}
+.no_padding{
+    padding: 0 !important;
+}
+
+.switch_select.is_active {
+    display: none;
+}
+
+.title_nowrap{
+    white-space: nowrap;
+}
+
+.m-t-25{
+    margin-top: 25px;
+}
+
+.w_100{
+    width: 100px;
+    white-space: nowrap;
+}
+
+.time_out_box{
+    display: flex;
+    align-items: baseline;
+}
+
+.clockpicker-popover .popover-title{
+    display: none;
+}
+.clockpicker-button{
+    display: none !important;
+}
+
+.css_outgoing_form .btn-default{
+    background: #fff;
+
+}
+
+.form_remove__form_group .form-group{
+    margin-bottom: 0;
+}
+
+.download_wrapp{
+    display: flex;
+    align-items: center;
+}
+.download_wrapp .btn{
+    width: 145px;
+    margin-left: 10px;
+    height: 37px;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 37px;
+}
+
+.checkbox_random{
+    margin: -5px 0 15px 0;
+}
+
+@media screen and (max-width: 767px) {
+    .table-responsive{
+        overflow-x: auto;
+    }
+}

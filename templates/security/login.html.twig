@@ -1,0 +1,58 @@
+{% extends "auth.html.twig" %}
+
+{% block title %}{{ parent() }} Login{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{# Use theme for form #}
+{% form_theme form 'form/bootstrap_material.html.twig' %}
+
+{# Render content #}
+{% block content %}
+
+<div class="lg-info-panel">
+    <div class="inner-panel">
+        <a href="javascript:void(0)" class="p-20 di"><img src="/plugins/images/admin-logo.png"></a>
+    </div>
+</div>
+
+<div class="new-login-box">
+    <div class="white-box">
+        <h3 class="box-title m-b-0">Log in</h3>
+        <small>Введите Ваш e-mail и пароль</small>
+
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            {{ form_start(form, {'attr': {'class': 'form-horizontal form-material new-lg-form'}}) }}
+            {{ form_errors(form, {'attr': {'class': 'alert alert-danger fade in'}}) }}
+
+                {{ form_row(form._username) }}
+                {{ form_row(form._password) }}
+
+                {{ form_widget(form.submit, {'label' : 'Login'}) }}
+
+            {{ form_end(form) }}
+
+
+            <div class="form-group m-b-0">
+                <div class="col-sm-12 text-center">
+                    <p>
+                        Нет учетной записи?
+                        <a href="{{ path('registration') }}" class="text-primary m-l-5">
+                            <b>Зарегистрируйтесь</b>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+    </div>
+</div>
+
+{% endblock %}
+

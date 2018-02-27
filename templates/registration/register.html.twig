@@ -1,0 +1,57 @@
+{% extends "auth.html.twig" %}
+
+{% block title %}{{ parent() }}Registration{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{# Use theme for form #}
+{% form_theme form 'form/bootstrap_material.html.twig' %}
+
+{# Render content #}
+{% block content %}
+
+<div class="lg-info-panel">
+    <div class="inner-panel">
+        <a href="javascript:void(0)" class="p-20 di"><img src="/plugins/images/admin-logo.png"></a>
+    </div>
+</div>
+
+<div class="new-login-box">
+    <div class="white-box">
+    	<div class="row">
+    		<div class="col-xs-12">
+	    		<h3 class="box-title m-b-0">Регистрация в кабинете</h3>
+		        <small>Пожалуйста, внесите свои данные. Наши менеджеры свяжутся с вами и проинформируют о дальнейших действиях.</small>
+
+	        	{{ form_start(form, {'attr': {'class': 'form-horizontal form-material new-lg-form'}}) }}
+				{{ form_errors(form, {'attr': {'class': 'alert alert-danger fade in'}}) }}
+
+                	{{ form_row(form.username) }}
+                	{{ form_row(form.email) }}
+                	{{ form_row(form.plainPassword.first) }}
+                	{{ form_row(form.plainPassword.second) }}
+                	{{ form_widget(form.termsAccepted) }}
+
+		        	<div class="form-group m-b-0">
+		                <div class="col-sm-12 text-center">
+		                    <p>
+		                        Уже зарегистрированы?
+		                        <a href="{{ path('login') }}" class="text-primary m-l-5">
+		                            <b>Войти в аккаунт</b>
+		                        </a>
+		                    </p>
+		                </div>
+		            </div>
+
+		            {{ form_widget(form.submit, {'label' : 'Register'}) }}
+
+		        {{ form_end(form) }}
+
+	        </div>
+    	</div>
+    </div>
+</div>
+
+{% endblock %}

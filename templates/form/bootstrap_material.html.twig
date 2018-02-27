@@ -1,0 +1,63 @@
+{# Errors #}
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+        	{% for error in errors %}
+        		<span class="help-block">{{ error.message }}</span>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{# Rows #}
+{% block form_row %}
+    <div class="form-group {% if valid is empty %}has-error{% endif %}">
+    	<div class="col-xs-12">
+    		{# Fill label variable #}
+	    	{% if label is empty %}
+		        {% set label = name|humanize %}
+		    {% endif %}
+
+		    {# Render form without label but with placeholders #}
+	        {{ form_widget(form, {'attr': {'class': 'form-control form-control-line', 'placeholder': label|trans({}, translation_domain)}}) }}
+	        {{ form_errors(form) }}
+    	</div>
+    </div>
+{% endblock form_row %}
+
+{# Checkboxes #}
+{% block checkbox_widget %}
+    <div class="form-group">
+        <div class="col-xs-12">
+        	<div class="checkbox checkbox-primary p-t-0">
+    			<input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+	        	{{ form_label(form) }}
+	            {{ form_errors(form) }}
+        	</div>
+        </div>
+    </div>
+{% endblock checkbox_widget %}
+
+{# Buttons #}
+{% block button_widget %}
+	{%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {%- elseif label is same as(false) -%}
+            {% set translation_domain = false %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+
+	<div class="form-group text-center m-t-20">
+        <div class="col-xs-12">
+        	<button type="{{ type|default('submit') }}" {{ block('button_attributes') }} class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light">
+            	{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}
+            </button>
+        </div>
+    </div>
+{% endblock button_widget %}
