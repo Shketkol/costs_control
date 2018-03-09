@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AccountRepository")
@@ -18,7 +17,7 @@ class Account
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="accounts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -30,14 +29,19 @@ class Account
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\AccountType", inversedBy="accounts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\AccountType")
      * @ORM\JoinColumn(nullable=false)
      */
     private $type;
 
+    public function getId() : int
+    {
+        return $this->id;
+    }
+
     public function getUser(): User
     {
-        return $this->category;
+        return $this->user;
     }
 
     public function setUser(User $user)
@@ -45,7 +49,7 @@ class Account
         $this->user = $user;
     }
 
-    public function getName() : string
+    public function getName() : ?string
     {
         return $this->name;
     }
@@ -55,7 +59,7 @@ class Account
     	$this->name = $name;
     }
 
-    public function getType(): AccountType
+    public function getType(): ?AccountType
     {
         return $this->type;
     }

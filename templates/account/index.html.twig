@@ -1,19 +1,28 @@
-{% extends "account.html.twig" %}
+{% extends "base.html.twig" %}
 
-{% block title %}{{ parent() }}Registration{% endblock %}
+{% block title %}{{ parent() }}Accounts{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
 {% endblock %}
 
-{# Use theme for form #}
-{% form_theme form 'form/bootstrap_material.html.twig' %}
-
 {# Render content #}
 {% block content %}
 
-<div class="white-bix">
-	
+{# Breadcrumbs #}
+<div class="row bg-title">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Accounts</h4>
+    </div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        {{ wo_render_breadcrumbs() }}
+    </div>
+</div>
+
+<div class="white-box">
+    <a href="{{ path('account_new') }}" class="btn btn-success">
+        Create an account
+    </a>
 </div>
 
 {% endblock %}

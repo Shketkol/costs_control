@@ -28,3 +28,17 @@ framework:
 
         # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
         #app: cache.adapter.apcu
+
+    templating:
+        engines: ['twig']
+
+white_october_breadcrumbs:
+    separator:          ~
+    separatorClass:     'separator'
+    listId:             'wo-breadcrumbs'
+    listClass:          'breadcrumb m-r-10'
+    itemClass:          ~
+    linkRel:            ''
+    locale:             ~ # defaults to null, so the default locale is used
+    translation_domain: ~ # defaults to null, so the default domain is used
+    viewTemplate:       'breadcrumbs.html.twig'

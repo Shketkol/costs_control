@@ -311,6 +311,9 @@
             "ref": "3db029c03e452b4a23f7fc45cec7c922c2247eb8"
         }
     },
+    "symfony/templating": {
+        "version": "v4.0.6"
+    },
     "symfony/translation": {
         "version": "3.3",
         "recipe": {
@@ -376,6 +379,9 @@
     },
     "webmozart/assert": {
         "version": "1.2.0"
+    },
+    "whiteoctober/breadcrumbs-bundle": {
+        "version": "1.4.1"
     },
     "zendframework/zend-code": {
         "version": "3.3.0"

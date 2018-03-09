@@ -22,10 +22,14 @@ class AccountType
      */
     private $name;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Account", mappedBy="type")
-     */
-    private $accounts;
+    public function __toString() {
+        return $this->name;
+    }
+
+    public function getId() : int
+    {
+        return $this->id;
+    }
 
 	public function getName() : string
     {
@@ -35,13 +39,5 @@ class AccountType
     public function setName(string $name)
     {
     	$this->name = $name;
-    }
-
-    /**
-     * @return Collection|Accounts[]
-     */
-    public function getAccounts() : Collection
-    {
-        return $this->accounts;
     }
 }
