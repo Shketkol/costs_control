@@ -8,16 +8,14 @@
 	    <meta name="author" content="">
 		<link rel="icon" type="image/png" sizes="16x16" href="/plugins/images/favicon.ico">
         
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Costs{% endblock %}</title>
         
         {% block stylesheets %}
         	<link rel="stylesheet" href="{{ asset('/build/app.css') }}">
         {% endblock %}
     </head>
     <body class="fix-header">
-    	<!-- ============================================================== -->
-		<!-- Preloader -->
-		<!-- ============================================================== -->
+		{# Preloader #}
 		<div class="preloader">
 		    <svg class="circular" viewBox="25 25 50 50">
 		        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
@@ -26,9 +24,11 @@
 
 		<div id="wrapper">
 
+			{# Top bar and menu #}
 			{% include '_nav_bar.html.twig' %}
 			{% include '_left_bar.html.twig' %}
 
+			{# Content #}
 		    <div id="page-wrapper">
 		        <div class="container-fluid">
 
@@ -38,7 +38,8 @@
 
 		        </div>
 
-		        <!-- <?= $this->render('_footer') ?> -->
+				{# Footer #}
+                {% include '_footer.html.twig' %}
 
 		    </div>
 		</div>
