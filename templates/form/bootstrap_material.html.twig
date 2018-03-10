@@ -18,8 +18,19 @@
 		        {% set label = name|humanize %}
 		    {% endif %}
 
+            {# Add custom classes if exist #}
+            {% if attr.class is defined %}
+                {% set customClasses = attr.class %}
+            {% else %}
+                {% set customClasses = '' %}
+            {% endif %}
+
 		    {# Render form without label but with placeholders #}
-	        {{ form_widget(form, {'attr': {'class': 'form-control form-control-line', 'placeholder': label|trans({}, translation_domain)}}) }}
+	        {{ form_widget(form, {'attr': {
+                    'class': 'form-control form-control-line ' ~ customClasses,
+                    'placeholder': label|trans({}, translation_domain)
+                }})
+            }}
 	        {{ form_errors(form) }}
     	</div>
     </div>
