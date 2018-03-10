@@ -13,6 +13,7 @@ Encore
     // uncomment to define the assets of the project
     .addEntry('app', './assets/assets/app.js')
     .addEntry('auth', './assets/assets/auth.js')
+    .addEntry('selectpicker', './assets/assets/selectpicker.js')
     // .addStyleEntry('css/app', './assets/css/app.scss')
 
     // uncomment if you use Sass/SCSS files
