@@ -7,6 +7,7 @@ require('../css/animate.css');
 require('../css/style.css');
 require('../css/colors/default.css');
 require('../css/main.css');
+require('../css/app.less');
 
 require('../css/style.css');
 
