@@ -14,6 +14,7 @@ Encore
     .addEntry('app', './assets/assets/app.js')
     .addEntry('auth', './assets/assets/auth.js')
     .addEntry('selectpicker', './assets/assets/selectpicker.js')
+    .addEntry('sweetalerts', './assets/assets/sweetalerts.js')
     // .addStyleEntry('css/app', './assets/css/app.scss')
 
     // uncomment if you use Sass/SCSS files

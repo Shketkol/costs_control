@@ -29,7 +29,8 @@
 
         {#{{ form_row(form) }}#}
         {{ form_row(form.name) }}
-        {{ form_row(form.type, {'attr': {'class': 'selectpicker'}}) }}
+        {{ form_row(form.type, {'attr': {'class': 'selectpicker', 'data-test': 'test'}}) }}
+        {{ form_row(form.balance) }}
 
         {{ form_widget(form.submit, {'label' : 'Add account'}) }}
 

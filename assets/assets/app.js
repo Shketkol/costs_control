@@ -1,7 +1,6 @@
 // CSS
 require('../plugins/bower_components/sweetalert/sweetalert.css');
 require('../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css');
-require('../plugins/bower_components/bootstrap-select/bootstrap-select.min.css');
 require('../lib/bootstrap/dist/css/bootstrap.min.css');
 require('../css/animate.css');
 require('../css/style.css');

@@ -19,10 +19,98 @@
     </div>
 </div>
 
-<div class="white-box">
-    <a href="{{ path('account_new') }}" class="btn btn-success">
-        Create an account
-    </a>
-</div>
+    <div class="white_bg">
+        {% if accounts %}
+            <div class="table-responsive">
+                <table class="table table_default table_default_scenarios">
+                    <thead>
+                    <tr>
+                        <th colspan="1">
+                            <div class="first_element">
+                                Name
+                            </div>
+                        </th>
+                        <th colspan="1">
+                            <div class="first_element">
+                                Type
+                            </div>
+                        </th>
+                        <th colspan="5">
+                            <div class="first_element">
+                                Balance
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for account in accounts %}
+                            <tr>
+                                <td>
+                                    <span class="list_title">
+                                        {{ account.name }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="list_title">
+                                        {{ account.type }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="list_title">
+                                        {{ account.balance }}
+                                    </span>
+                                </td>
+
+                                <td class="text-right vam w_100">
+                                    <a data-pjax="0" href=""
+                                       class="edit_scen icon_block btn_action btn_edit"
+                                    >
+                                        <span>Edit</span>
+                                    </a>
+                                </td>
+
+                                <td class="text-right vam w_100">
+                                    <a href="#"
+                                       data-pjax="0"
+                                       data-href=""
+                                       data-name="{{ account.name }}"
+                                       class="delete-btn icon_block last edit_scen btn_action btn_delete"
+                                    >
+                                        <span>Delete</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="panel panel-inverse m-b-30">
+                <div class="panel-heading"> No accounts
+                    <div class="pull-right">
+                        <a href="#" data-pjax="0" data-perform="panel-collapse"><i class="ti-minus"></i></a>
+                    </div>
+                </div>
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                    <div class="panel-body">
+                        <p>
+                            You have no accounts yet
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <a data-pjax="0" href="{{ path('account_new') }}" class="button_table button_table_scenarios">
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    width="20px" height="20px">
+                <path fill-rule="evenodd"  fill="rgb(255, 255, 255)"
+                      d="M9.998,0.000 C4.469,0.000 -0.013,4.477 -0.013,9.998 C-0.013,15.520 4.469,19.997 9.998,19.997 C15.527,19.997 20.009,15.520 20.009,9.998 C20.009,4.477 15.527,0.000 9.998,0.000 ZM9.998,17.997 C5.582,17.997 1.989,14.409 1.989,9.998 C1.989,5.588 5.582,2.000 9.998,2.000 C14.414,2.000 18.007,5.588 18.007,9.998 C18.007,14.409 14.414,17.997 9.998,17.997 ZM10.999,8.999 L14.002,8.999 L14.002,10.998 L10.999,10.998 L10.999,13.998 L8.997,13.998 L8.997,10.998 L5.994,10.998 L5.994,8.999 L8.997,8.999 L8.997,5.999 L10.999,5.999 L10.999,8.999 Z"/>
+            </svg>
+            <span>Добавить</span>
+        </a>
+    </div>
 
 {% endblock %}

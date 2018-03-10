@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Account;
 use App\Form\AccountType as AccountForm;
-use App\Entity\AccountType as AccountType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +32,7 @@ class AccountController extends Controller
 
         dump($accounts, $breadcrumbs);
 
-        return $this->render('account/index.html.twig');
+        return $this->render('account/index.html.twig', ['accounts' => $accounts]);
     }
 
     /**

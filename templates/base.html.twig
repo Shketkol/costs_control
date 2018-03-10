@@ -12,6 +12,8 @@
         
         {% block stylesheets %}
         	<link rel="stylesheet" href="{{ asset('/build/app.css') }}">
+        	<link rel="stylesheet" href="{{ asset('/build/selectpicker.css') }}">
+        	<link rel="stylesheet" href="{{ asset('/build/sweetalerts.css') }}">
         {% endblock %}
     </head>
     <body class="fix-header">
@@ -46,6 +48,8 @@
 
         {% block javascripts %}
             <script src="{{ asset('/build/app.js') }}"></script>
+            <script src="{{ asset('/build/selectpicker.js') }}"></script>
+            <script src="{{ asset('/build/sweetalerts.js') }}"></script>
         {% endblock %}
     </body>
 </html>

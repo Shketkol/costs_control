@@ -34,7 +34,12 @@ class Account
      */
     private $type;
 
-    public function getId() : int
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=2, options={"default" : 0.00})
+     */
+    private $balance = 0.00;
+
+    public function getId(): int
     {
         return $this->id;
     }
@@ -44,12 +49,12 @@ class Account
         return $this->user;
     }
 
-    public function setUser(User $user)
+    public function setUser(User $user): void
     {
         $this->user = $user;
     }
 
-    public function getName() : ?string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -64,8 +69,24 @@ class Account
         return $this->type;
     }
 
-    public function setType(AccountType $type)
+    public function setType(AccountType $type): void
     {
         $this->type = $type;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getBalance(): ?float
+    {
+        return $this->balance;
+    }
+
+    /**
+     * @param float $balance
+     */
+    public function setBalance(float $balance): void
+    {
+        $this->balance = $balance;
     }
 }

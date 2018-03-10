@@ -24,18 +24,13 @@ class AccountType extends AbstractType
     {
         $builder
             ->add('name')
-//            ->add('type', AccountTypeType::class)
             ->add('type', null, [
                 'required' => true,
-//                'data' => $type,
                 'placeholder' => 'Select a type...',
-//                'class' => \App\Entity\AccountType::class
             ])
+            ->add('balance')
             ->add('submit', ButtonType::class)
         ;
-
-//        $builder->addEventListener(FormEvents::PRE_SET_DATA, array($this, 'onPreSetData'));
-//        $builder->addEventListener(FormEvents::PRE_SUBMIT, array($this, 'onPreSubmit'));
     }
 
     protected function addElements(FormInterface $form, \App\Entity\AccountType $type = null) {
@@ -45,30 +40,6 @@ class AccountType extends AbstractType
             'placeholder' => 'Select a type...',
             'class' => \App\Entity\AccountType::class
         ));
-    }
-
-    function onPreSubmit(FormEvent $event) {
-        $form = $event->getForm();
-        $data = $event->getData();
-
-        // Search for selected type and convert it into an Entity
-        $type = $this->em->getRepository(\App\Entity\AccountType::class)->find($data['type']);
-
-        $this->addElements($form, $type);
-    }
-
-    function onPreSetData(FormEvent $event) {
-        $account = $event->getData();
-
-//        dump($event); exit;
-        $form = $event->getForm();
-
-        // When you create a new account, the type is always empty
-        if (!empty($account)) {
-            $type = $account->getType() ? $account->getType() :  null;
-        }
-
-        $this->addElements($form, $type ?? null);
     }
 
     public function configureOptions(OptionsResolver $resolver)
