@@ -103,7 +103,6 @@ class AccountController extends Controller
 
             $response['html'] = $this->render('account/index.html.twig', ['accounts' => $accounts]);
         } catch (\Throwable $t) {
-            $this->addFlash('error', 'Account not found!');
             $response['message'] = 'Account not found!';
         }
 

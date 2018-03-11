@@ -27,6 +27,7 @@ $(document).on('click', '.delete-btn', function() {
                 if (response.status === 'success') {
                     // Replace document content
                     if (typeof response.html !== 'undefined') {
+                        console.log(response.html);
                         let newDoc = document.open("text/html", "replace");
                         newDoc.write(response.html);
                         newDoc.close();

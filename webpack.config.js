@@ -33,6 +33,10 @@ Encore
 
     // show OS notifications when builds finish/fail
     .enableBuildNotifications()
+
+    .configureFilenames({
+        images: '[path][name].[ext]'
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();
