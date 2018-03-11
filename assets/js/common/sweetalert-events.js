@@ -19,16 +19,23 @@ $(document).on('click', '.delete-btn', function() {
     }, function(isConfirm) {
         if (!isConfirm) return;
 
+        // window.location.href = deleteUrl;
         $.ajax({
             type: "POST",
             url: deleteUrl,
             success: function(response) {
                 if (response.status === 'success') {
+                    // Replace document content
+                    if (typeof response.html !== 'undefined') {
+                        let newDoc = document.open("text/html", "replace");
+                        newDoc.write(response.html);
+                        newDoc.close();
+                    }
+
                     swal("Success!", response.message, "success");
                 } else {
                     swal("Error!", response.message, "error");
                 }
-                // $.pjax.reload({container:"#pjax-container"});
             },
             error: function() {
                 swal("Error", "Request send error", "error");

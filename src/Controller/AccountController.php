@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Account;
 use App\Form\AccountType as AccountForm;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -29,8 +31,6 @@ class AccountController extends Controller
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("index_page"));
         $breadcrumbs->addItem("Accounts");
-
-        dump($accounts, $breadcrumbs);
 
         return $this->render('account/index.html.twig', ['accounts' => $accounts]);
     }
@@ -69,5 +69,44 @@ class AccountController extends Controller
         }
 
         return $this->render('account/new.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="account_delete")
+     * @Method({"GET", "POST", "DELETE"})
+     *
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function delete(Account $account) : Response
+    {
+        $response = [
+            'status' => 'error',
+            'message' => null,
+            'html'
+        ];
+
+        try {
+            // Delete account
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($account);
+            $em->flush();
+
+            $response['status'] = 'success';
+            $response['message'] = 'Account deleted!';
+
+            // Render index page again
+            $accounts = $this->getDoctrine()
+                ->getRepository(Account::class)
+                ->findAll();
+
+            $response['html'] = $this->render('account/index.html.twig', ['accounts' => $accounts]);
+        } catch (\Throwable $t) {
+            $this->addFlash('error', 'Account not found!');
+            $response['message'] = 'Account not found!';
+        }
+
+        return JsonResponse::create($response);
     }
 }

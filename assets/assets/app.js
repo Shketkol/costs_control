@@ -17,3 +17,4 @@ require('../lib/jquery.slimscroll.js');
 require('../lib/waves.js');
 require('../js/custom.min.js');
 require('../plugins/bower_components/styleswitcher/jQuery.style.switcher.js');
+require('jquery-pjax');
