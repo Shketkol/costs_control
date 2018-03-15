@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\AccountType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 class AccountTypeRepository extends ServiceEntityRepository
 {
@@ -13,16 +15,15 @@ class AccountTypeRepository extends ServiceEntityRepository
         parent::__construct($registry, AccountType::class);
     }
 
-    /*
-    public function findBySomething($value)
+    public function findCommonAndUserTypes(UserInterface $user)
     {
         return $this->createQueryBuilder('a')
-            ->where('a.something = :value')->setParameter('value', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->where('a.user IS NULL')
+            ->orWhere('a.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('a.user', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 }

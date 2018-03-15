@@ -37,7 +37,7 @@ class AccountType
         return $this->id;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
@@ -47,7 +47,7 @@ class AccountType
         $this->user = $user;
     }
 
-	public function getName() : string
+	public function getName() : ?string
     {
         return $this->name;
     }

@@ -2,51 +2,52 @@
 
 namespace App\Controller;
 
-use App\Entity\Account;
-use App\Form\AccountType as AccountForm;
+use App\Entity\AccountType;
+use App\Form\AccountTypeType as AccountTypeForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/accounts")
+ * @Route("/account/types")
  */
-class AccountController extends Controller
+class AccountTypeController extends Controller
 {
     /**
-     * @Route("/", name="accounts")
+     * @Route("/", name="account_types")
      */
     public function index(UserInterface $user) : Response
     {
-        // Get all accounts of current user
-        $accounts = $this->getDoctrine()
-            ->getRepository(Account::class)
-            ->findBy(['user' => $user]);
-
-        // Add breadcrumbs
-        $breadcrumbs = $this->get("white_october_breadcrumbs");
-        $breadcrumbs->addItem("Home", $this->get("router")->generate("index_page"));
-        $breadcrumbs->addItem("Accounts");
-
-        return $this->render('account/index.html.twig', ['accounts' => $accounts]);
-    }
-
-    /**
-     * @Route("/new", name="account_new")
-     * @return Response
-     */
-    public function new(Request $request, UserInterface $user) : Response
-    {
-        $form = $this->createForm(AccountForm::class);
+        // Get all types
+        $accountTypes = $this->getDoctrine()
+            ->getRepository(AccountType::class)
+            ->findCommonAndUserTypes($user);
 
         // Add breadcrumbs
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("index_page"));
         $breadcrumbs->addItem("Accounts", $this->get("router")->generate("accounts"));
+        $breadcrumbs->addItem("Types");
+
+        return $this->render('account-type/index.html.twig', ['accountTypes' => $accountTypes]);
+    }
+
+    /**
+     * @Route("/new", name="account_type_new")
+     */
+    public function new(Request $request, UserInterface $user) : Response
+    {
+        $form = $this->createForm(AccountTypeForm::class);
+
+        // Add breadcrumbs
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("index_page"));
+        $breadcrumbs->addItem("Accounts", $this->get("router")->generate("accounts"));
+        $breadcrumbs->addItem("Types", $this->get("router")->generate("account_types"));
         $breadcrumbs->addItem("New");
 
         // Handle the submit
@@ -54,31 +55,27 @@ class AccountController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Load data to form
-            $account = $form->getData();
+            $accountType = $form->getData();
 
             // Set user
-            $account->setUser($user);
+            $accountType->setUser($user);
 
-            // Save the Account
+            // Save the AccountType
             $em = $this->getDoctrine()->getManager();
-            $em->persist($account);
+            $em->persist($accountType);
             $em->flush();
 
-            return $this->redirectToRoute('accounts');
+            return $this->redirectToRoute('account_types');
         }
 
-        return $this->render('account/new.html.twig', ['form' => $form->createView()]);
+        return $this->render('account-type/new.html.twig', ['form' => $form->createView()]);
     }
 
     /**
-     * @Route("/delete/{id}", name="account_delete")
+     * @Route("/delete/{id}", name="account_type_delete")
      * @Method({"GET", "POST", "DELETE"})
-     *
-     * @param Request $request
-     * @param int $id
-     * @return Response
      */
-    public function delete(Account $account) : Response
+    public function delete(AccountType $accountType, UserInterface $user) : Response
     {
         $response = [
             'status' => 'error',
@@ -89,20 +86,20 @@ class AccountController extends Controller
         try {
             // Delete account
             $em = $this->getDoctrine()->getManager();
-            $em->remove($account);
+            $em->remove($accountType);
             $em->flush();
 
             $response['status'] = 'success';
-            $response['message'] = 'Account deleted!';
+            $response['message'] = 'Account type deleted!';
 
             // Render index page again
-            $accounts = $this->getDoctrine()
-                ->getRepository(Account::class)
-                ->findAll();
+            $accountTypes = $this->getDoctrine()
+                ->getRepository(AccountType::class)
+                ->findCommonAndUserTypes($user);
 
-            $response['html'] = $this->render('account/index.html.twig', ['accounts' => $accounts]);
+            $response['html'] = $this->render('account-type/index.html.twig', ['accountTypes' => $accountTypes]);
         } catch (\Throwable $t) {
-            $response['message'] = 'Account not found!';
+            $response['message'] = 'Account type not found!';
         }
 
         return JsonResponse::create($response);
