@@ -41,14 +41,16 @@
                             </td>
 
                             <td class="text-right vam w_100">
-                                <a href="#"
-                                   data-pjax="0"
-                                   data-href="{{ path('account_type_delete', {'id': type.id}) }}"
-                                   data-name="{{ type.name }}"
-                                   class="delete-btn icon_block last edit_scen btn_action btn_delete"
-                                >
-                                    <span>Delete</span>
-                                </a>
+                                {% if type.user is not null %}
+                                    <a href="#"
+                                       data-pjax="0"
+                                       data-href="{{ path('account_type_delete', {'id': type.id}) }}"
+                                       data-name="{{ type.name }}"
+                                       class="delete-btn icon_block last edit_scen btn_action btn_delete"
+                                    >
+                                        <span>Delete</span>
+                                    </a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
