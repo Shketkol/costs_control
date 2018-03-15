@@ -18,6 +18,12 @@ class AccountType
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="string", length=150)
      */
     private $name;
@@ -29,6 +35,16 @@ class AccountType
     public function getId() : int
     {
         return $this->id;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
     }
 
 	public function getName() : string
