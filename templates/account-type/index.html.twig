@@ -31,34 +31,43 @@
                     </th>
                 </tr>
                 </thead>
-                <tbody>
-                    {% for type in accountTypes %}
-                        <tr>
-                            <td>
-                                <span class="list_title">
-                                    {{ type.name }}
-                                </span>
-                            </td>
 
-                            <td class="text-right vam w_100">
-                                {% if type.user is not null %}
-                                    <a href="#"
-                                       data-pjax="0"
-                                       data-href="{{ path('account_type_delete', {'id': type.id}) }}"
-                                       data-name="{{ type.name }}"
-                                       class="delete-btn icon_block last edit_scen btn_action btn_delete"
-                                    >
-                                        <span>Delete</span>
-                                    </a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
+
+                <tbody class="ajax-container">
+
+                    {% block table_rows %}
+
+                        {% for type in accountTypes %}
+                            <tr>
+                                <td>
+                                    <span class="list_title">
+                                        {{ type.name }}
+                                    </span>
+                                </td>
+
+                                <td class="text-right vam w_100">
+                                    {% if type.user is not null %}
+                                        <a href="#"
+                                           data-href="{{ path('account_type_delete', {'id': type.id}) }}"
+                                           data-name="{{ type.name }}"
+                                           class="delete-btn icon_block last edit_scen btn_action btn_delete"
+                                        >
+                                            <span>Delete</span>
+                                        </a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    {% endblock table_rows %}
+
                 </tbody>
+
+
             </table>
         </div>
 
-        <a data-pjax="0" href="{{ path('account_type_new') }}" class="button_table button_table_scenarios">
+        <a href="{{ path('account_type_new') }}" class="button_table button_table_scenarios">
             <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"

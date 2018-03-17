@@ -1,4 +1,6 @@
-$(document).on('click', '.delete-btn', function() {
+$(document).on('click', '.delete-btn', function(event) {
+    event.preventDefault();
+
     // Get name
     let name = $(this).data('name');
     let deleteUrl = $(this).data('href');
@@ -21,16 +23,18 @@ $(document).on('click', '.delete-btn', function() {
 
         // window.location.href = deleteUrl;
         $.ajax({
-            type: "POST",
+            type: "DELETE",
             url: deleteUrl,
             success: function(response) {
                 if (response.status === 'success') {
                     // Replace document content
                     if (typeof response.html !== 'undefined') {
-                        console.log(response.html);
-                        let newDoc = document.open("text/html", "replace");
-                        newDoc.write(response.html);
-                        newDoc.close();
+                        // Update content
+                        let ajaxContainer = $('.ajax-container');
+
+                        if (typeof ajaxContainer !== 'undefined') {
+                            ajaxContainer.html(response.html);
+                        }
                     }
 
                     swal("Success!", response.message, "success");

@@ -42,45 +42,52 @@
                         </th>
                     </tr>
                     </thead>
-                    <tbody>
-                        {% for account in accounts %}
-                            <tr>
-                                <td>
-                                    <span class="list_title">
-                                        {{ account.name }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="list_title">
-                                        {{ account.type }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="list_title">
-                                        {{ account.balance }}
-                                    </span>
-                                </td>
 
-                                <td class="text-right vam w_100">
-                                    <a data-pjax="0" href=""
-                                       class="edit_scen icon_block btn_action btn_edit"
-                                    >
-                                        <span>Edit</span>
-                                    </a>
-                                </td>
+                    <tbody class="ajax-container">
 
-                                <td class="text-right vam w_100">
-                                    <a href="#"
-                                       data-pjax="0"
-                                       data-href="{{ path('account_delete', {'id': account.id}) }}"
-                                       data-name="{{ account.name }}"
-                                       class="delete-btn icon_block last edit_scen btn_action btn_delete"
-                                    >
-                                        <span>Delete</span>
-                                    </a>
-                                </td>
-                            </tr>
-                        {% endfor %}
+                        {% block table_rows %}
+
+                            {% for account in accounts %}
+                                <tr>
+                                    <td>
+                                        <span class="list_title">
+                                            {{ account.name }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="list_title">
+                                            {{ account.type }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="list_title">
+                                            {{ account.balance }}
+                                        </span>
+                                    </td>
+
+                                    <td class="text-right vam w_100">
+                                        <a data-pjax="0" href=""
+                                           class="edit_scen icon_block btn_action btn_edit"
+                                        >
+                                            <span>Edit</span>
+                                        </a>
+                                    </td>
+
+                                    <td class="text-right vam w_100">
+                                        <a href="#"
+                                           data-pjax="0"
+                                           data-href="{{ path('account_delete', {'id': account.id}) }}"
+                                           data-name="{{ account.name }}"
+                                           class="delete-btn icon_block last edit_scen btn_action btn_delete"
+                                        >
+                                            <span>Delete</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                        {% endblock table_rows %}
+
                     </tbody>
                 </table>
             </div>

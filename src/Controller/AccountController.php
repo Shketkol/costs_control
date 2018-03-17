@@ -72,13 +72,13 @@ class AccountController extends Controller
 
     /**
      * @Route("/delete/{id}", name="account_delete")
-     * @Method({"GET", "POST", "DELETE"})
+     * @Method({"DELETE"})
      *
      * @param Request $request
      * @param int $id
      * @return Response
      */
-    public function delete(Account $account) : Response
+    public function delete(Account $account, UserInterface $user) : Response
     {
         $response = [
             'status' => 'error',
@@ -95,12 +95,16 @@ class AccountController extends Controller
             $response['status'] = 'success';
             $response['message'] = 'Account deleted!';
 
-            // Render index page again
+            // Get all user accounts
             $accounts = $this->getDoctrine()
                 ->getRepository(Account::class)
-                ->findAll();
+                ->findBy(['user' => $user]);
 
-            $response['html'] = $this->render('account/index.html.twig', ['accounts' => $accounts]);
+            // Get view block (not whole template)
+            $template = $this->get('twig')->loadTemplate('account/index.html.twig');
+            $tableRows = $template->renderBlock('table_rows', ['accounts' => $accounts]);
+
+            $response['html'] = $tableRows;
         } catch (\Throwable $t) {
             $response['message'] = 'Account not found!';
         }

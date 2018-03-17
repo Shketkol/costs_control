@@ -73,7 +73,7 @@ class AccountTypeController extends Controller
 
     /**
      * @Route("/delete/{id}", name="account_type_delete")
-     * @Method({"GET", "POST", "DELETE"})
+     * @Method({"DELETE"})
      */
     public function delete(AccountType $accountType, UserInterface $user) : Response
     {
@@ -92,13 +92,18 @@ class AccountTypeController extends Controller
             $response['status'] = 'success';
             $response['message'] = 'Account type deleted!';
 
-            // Render index page again
+            // Get account types
             $accountTypes = $this->getDoctrine()
                 ->getRepository(AccountType::class)
                 ->findCommonAndUserTypes($user);
 
-            $response['html'] = $this->render('account-type/index.html.twig', ['accountTypes' => $accountTypes]);
+            // Get view block (not whole template)
+            $template = $this->get('twig')->loadTemplate('account-type/index.html.twig');
+            $tableRows = $template->renderBlock('table_rows', ['accountTypes' => $accountTypes]);
+
+            $response['html'] = $tableRows;
         } catch (\Throwable $t) {
+            $response['status'] = 'error';
             $response['message'] = 'Account type not found!';
         }
 
