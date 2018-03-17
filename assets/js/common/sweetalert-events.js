@@ -21,7 +21,6 @@ $(document).on('click', '.delete-btn', function(event) {
     }, function(isConfirm) {
         if (!isConfirm) return;
 
-        // window.location.href = deleteUrl;
         $.ajax({
             type: "DELETE",
             url: deleteUrl,
