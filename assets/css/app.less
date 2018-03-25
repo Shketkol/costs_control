@@ -1,10 +1,14 @@
+@table_color: rgba(16, 44, 73, 0.65);
+
 body{
+
   font-weight: 400;
 }
 
 @media (max-width: 1280px){
   body{
     width: 1280px;
+    overflow: auto;
   }
 }
 
@@ -180,13 +184,17 @@ body{
   background-color: #fde19a;
 }
 
-.table_call{
+.transactions-table{
   table-layout: fixed;
   thead{
     th{
-      background-color: #3288e3;
+      background-color: @table_color;
       color: #fff;
       padding: 21px 8px;
+      text-align: left;
+    }
+    th.text-center {
+      text-align: center;
     }
   }
   tbody{
@@ -204,17 +212,11 @@ body{
   }
 }
 
-.svg_in,.svg_out,.svg_mis{
+.svg_in,.svg_out{
   width: 26px;
   height: 26px;
   path{
     fill: #919191
-  }
-}
-
-.svg_mis{
-  path{
-    fill: #f03f3c
   }
 }
 
@@ -228,11 +230,11 @@ body{
   font-size: 15px;
 }
 
-.bold_text{
+.text-bold{
   font-weight: 500;
 }
 
-.call_table_svg_wrapp{
+.transaction-svg-wrapp{
   margin-top: 5px
 }
 
@@ -438,7 +440,7 @@ body{
   }
 }
 
-.aliases{
+.subtitle{
   font-size: 12px;
   color: #969696;
 
@@ -448,16 +450,8 @@ body{
   margin-left: 35px;
 }
 
-.table_call{
+.transactions-table{
   table-layout: auto;
-
-  thead{
-    tr{
-      th{
-        text-align: left;
-      }
-    }
-  }
 
   .first_called_to{
     padding: 0 11px;
@@ -835,7 +829,7 @@ body{
 @media (max-width: 1600px) {
 
 
-  .table_call{
+  .transactions-table{
     .table_call-list{
       text-align: center;
       width: 35px;
@@ -959,7 +953,7 @@ body{
 }
 
 @media (max-width: 1300px) {
-  .table_call tbody tr td{
+  .transactions-table tbody tr td{
     font-size: 13px;
   }
 
@@ -967,7 +961,7 @@ body{
     font-size: 10px;
   }
 
-  .table_call{
+  .transactions-table{
     thead{
       tr{
         th{
@@ -1010,7 +1004,7 @@ body{
     height: 19px;
   }
 
-  .table_call{
+  .transactions-table{
 
     .table_call-number{
       width: 90px;
@@ -1031,12 +1025,12 @@ body{
 
 @media (max-width: 1025px){
 
-  .table_call tbody tr td{
+  .transactions-table tbody tr td{
     font-size: 12px;
     padding: 10px 8px;
   }
 
-  .table_call{
+  .transactions-table{
     thead{
       tr{
         th{
@@ -1077,7 +1071,7 @@ body{
   }
 
 
-  .table_call{
+  .transactions-table{
     .table_call-list{
       text-align: center;
       width: 30px;
@@ -1146,7 +1140,7 @@ body{
     width: 100%;
   }
 
-  .table_call{
+  .transactions-table{
     .table_call-operator{
       width: 135px;
     }
@@ -1155,7 +1149,7 @@ body{
     }
   }
 
-  .table_call tbody tr td{
+  .transactions-table tbody tr td{
     white-space: inherit !important;
   }
 
@@ -1241,7 +1235,7 @@ body{
   table-layout: fixed;
   thead{
     th{
-      background-color: #3288e3;
+      background-color: @table_color;
       font-weight: 500;
       font-size: 15px;
       color: #ffffff;
@@ -1619,7 +1613,7 @@ body{
 .btn_delete{
   span{
     &:before{
-      background: url("../img/btn_delete_ico.svg") no-repeat center;
+      background: url("/img/btn_delete_ico.svg") no-repeat center;
     }
   }
 }
@@ -1627,7 +1621,7 @@ body{
 .btn_copy{
   span{
     &:before{
-      background: url("../img/btn_copy_ico.svg") no-repeat center;
+      background: url("/img/btn_copy_ico.svg") no-repeat center;
     }
   }
 }
@@ -1635,7 +1629,7 @@ body{
 .btn_edit{
   span{
     &:before{
-      background: url("../img/btn_edit_ico.svg") no-repeat center;
+      background: url("/img/btn_edit_ico.svg") no-repeat center;
     }
   }
 }
@@ -1643,7 +1637,7 @@ body{
 .btn_view{
   span{
     &:before{
-      background: url("../img/btn_show_ico.svg") no-repeat center;
+      background: url("/img/btn_show_ico.svg") no-repeat center;
     }
   }
 }
@@ -1651,7 +1645,7 @@ body{
 .btn_settings{
   span{
     &:before{
-      background: url("../img/btn_settings_ico.svg") no-repeat center;
+      background: url("/img/btn_settings_ico.svg") no-repeat center;
     }
   }
 }
@@ -1663,7 +1657,7 @@ body{
     transition: all .5s ease;
     &:before{
       top: -3px;
-      background: url("../img/btn_active_ico.svg") no-repeat center;
+      background: url("/img/btn_active_ico.svg") no-repeat center;
     }
   }
 
@@ -1973,7 +1967,7 @@ body{
     thead{
       tr{
         th{
-          border-color: #3288e3;
+          border-color: @table_color;
           text-align: left;
           padding-left: 22px;
         }
@@ -2214,13 +2208,13 @@ body{
 
 //table border
 
-.table_call{
+.transactions-table{
   &.table-bordered{
     thead{
       th{
-        border-color: #3288e3;
+        border-color: @table_color;
         vertical-align: middle;
-        background-color: #3288e3;
+        background-color: @table_color;
       }
     }
     td,th{
@@ -3188,94 +3182,43 @@ body{
 }
 
 
-//=========================users_menu======================
+/* Nav bar */
 
+.navbar-menu {
+  padding: 0;
 
-.users_menu{
-  .users_menu_button{
-    padding:  0 40px;
-    display: flex;
-    align-items: center;
-    &:hover{
-      background-color: #3a3b46;
-    }
-  }
-
-  .first_name_users{
-    line-height: 1;
+  .username{
     font-size: 16px;
-    color: #fff;
     font-weight: 500;
     margin: 0 10px;
   }
 
-  .dropdown-user{
-    padding: 0;
-
-    .dropdown_flex_link{
-      padding: 16px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      font-size: 14px;
-      color: #252525;
-      border-bottom: 1px solid rgb(227, 231, 234);
-      transition: all .5s ease;
-      svg,i{
-        margin-right: 16px;
-        transition: all .3s ease;
-      }
-
-      &:hover{
-        background-color: #595b65;
-        color: #fff;
-        svg,i{
-          color: #fff;
-          path{
-            fill: #fff;
-          }
-        }
-      }
-    }
-
-    .active_project{
-      .dropdown_flex_link{
-        background-color: #595b65;
-        color: #fff;
-        svg,i{
-          color: #fff;
-          path{
-            fill: #fff;
-          }
-        }
-      }
-    }
-
-  }
-
-  .label_rights{
-    margin-left: auto;
-    padding: 6px 9px;
-  }
-
-  .dropdown_flex{
-    box-shadow: 2px 3.464px 6px 0 rgba(0, 0, 0, 0.06);
-    border: 1px solid rgb(227, 231, 234);
-    border-top: none;
-    border-right: none;
-  }
-
-  .flex_span{
+  .navbar-item{
+    line-height: 1;
+    padding: 16px 18px;
     display: flex;
     align-items: center;
-    max-width: 130px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    svg{
-      min-width: 19px;
+    justify-content: flex-start;
+    font-size: 14px;
+    color: #fff;
+    border-bottom: 1px solid rgb(227, 231, 234);
+    transition: all .5s ease;
+
+    svg,i{
+      margin-right: 16px;
+      transition: all .3s ease;
     }
 
+    &:hover{
+      background-color: #595b65;
+      color: #fff;
+      svg,i{
+        color: #ff9800;
+        path{
+          fill: #ff9800;
+        }
+      }
+    }
   }
 }
 
@@ -4092,4 +4035,43 @@ body{
     }
   }
 
+}
+
+
+.js_audio_error{
+  color: #a94442;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.list_ip{
+  counter-reset: list;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.list_ip li{
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  list-style-type: decimal;
+  position: relative;
+  padding-left: 25px;
+
+}
+
+.list_ip li:before{
+  content: counters(list,".") ".";
+  counter-increment: list;
+  position: absolute;
+  top: 2px;
+  left: 0;
+}
+
+.list_ip li .ip_block{
+  line-height: 1;
+  display: block;
+  font-weight: 500;
+  margin-top: 4px;
+  width: 110px;
 }
