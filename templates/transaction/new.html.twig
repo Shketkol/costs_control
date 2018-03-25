@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} - Log new transaction{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{# Use theme for form #}
+{% form_theme form 'form/bootstrap_material.html.twig' %}
+
+{# Render content #}
+{% block content %}
+
+{# Breadcrumbs #}
+<div class="row bg-title">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">New transaction</h4>
+    </div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        {{ wo_render_breadcrumbs() }}
+    </div>
+</div>
+
+<div class="container">
+    <div class="white-box">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal form-material new-lg-form'}}) }}
+        {{ form_errors(form, {'attr': {'class': 'alert alert-danger fade in'}}) }}
+
+            {{ form_row(form.date) }}
+            {{ form_row(form.type) }}
+            {{ form_row(form.account) }}
+            {{ form_row(form.sum) }}
+            {{ form_row(form.comment) }}
+
+            {{ form_widget(form.submit, {'label' : 'Log this transaction'}) }}
+
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% endblock %}

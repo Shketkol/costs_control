@@ -18,6 +18,8 @@ use Symfony\Component\HttpFoundation\Request;
 class AccountTypeController extends Controller
 {
     /**
+     * Prints list of account types
+     *
      * @Route("/", name="account_types")
      */
     public function index(UserInterface $user) : Response
