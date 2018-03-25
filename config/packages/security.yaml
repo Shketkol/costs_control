@@ -23,7 +23,7 @@ security:
                 use_referer: true
                 # login_path: login
                 # check_path: login
-                # default_target_path: /
+                default_target_path: transactions
             logout:
                 path: logout
                 target: login

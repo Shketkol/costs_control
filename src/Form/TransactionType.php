@@ -2,41 +2,38 @@
 
 namespace App\Form;
 
-use App\Entity\Account;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Transaction;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AccountType extends AbstractType
+class TransactionType extends AbstractType
 {
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('date', DateType::class, ['data' => new \DateTime()])
             ->add('type', null, [
                 'required' => true,
-                'placeholder' => 'Select a type...',
+                'placeholder' => 'Select type of the transaction',
             ])
-            ->add('balance')
+            ->add('account', null, [
+                'required' => true,
+                'placeholder' => 'Select an account',
+            ])
+            ->add('sum')
+            ->add('comment')
             ->add('submit', ButtonType::class)
         ;
     }
 
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Account::class,
+            'data_class' => Transaction::class,
         ]);
     }
 }

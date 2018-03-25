@@ -18,6 +18,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class AccountController extends Controller
 {
     /**
+     * Prints list of accounts
+     *
      * @Route("/", name="accounts")
      */
     public function index(UserInterface $user) : Response

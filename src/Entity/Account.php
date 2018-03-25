@@ -44,6 +44,10 @@ class Account
         return $this->id;
     }
 
+    public function __toString() {
+        return $this->name;
+    }
+
     public function getUser(): User
     {
         return $this->user;
