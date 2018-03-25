@@ -14,6 +14,29 @@
                 <a href="#" class="waves-effect">
                     <i class="mdi mdi-settings fa-fw"></i>
                     <span class="hide-menu">
+                        Transactions
+                        <span class="fa arrow"></span>
+                    </span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ path('transactions') }}" class="waves-effect">
+                            <i class="mdi mdi-call-merge m-r-10" style="font-size: 20px"></i>
+                            <span class="hide-menu">Transactions list</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('transaction_new') }}" class="waves-effect">
+                            <i class="mdi mdi-call-split m-r-10" style="font-size: 20px"></i>
+                            <span class="hide-menu">New transaction</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="waves-effect">
+                    <i class="mdi mdi-settings fa-fw"></i>
+                    <span class="hide-menu">
                         Accounts
                         <span class="fa arrow"></span>
                     </span>
@@ -22,7 +45,7 @@
                     <li>
                         <a href="{{ path('accounts') }}" class="waves-effect">
                             <i class="mdi mdi-call-merge m-r-10" style="font-size: 20px"></i>
-                            <span class="hide-menu">Accounts</span>
+                            <span class="hide-menu">Accounts list</span>
                         </a>
                     </li>
                     <li>

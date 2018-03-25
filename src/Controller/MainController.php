@@ -12,8 +12,6 @@ class MainController extends Controller
     */
     public function index()
     {
-        $number = mt_rand(0, 100);
-
-        return $this->render('main/index.html.twig', compact('number'));
+        return $this->redirectToRoute('transactions');
     }
 }
