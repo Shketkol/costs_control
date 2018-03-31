@@ -21,4 +21,7 @@
 ###< symfony/web-server-bundle ###
 
 ### PHP storm ###
-.idea/*
+/.idea/*
+/.idea/costs.iml
+package-lock.json
+/.idea/php.xml

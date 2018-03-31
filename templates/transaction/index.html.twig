@@ -63,7 +63,10 @@
                         </tr>
                         <tr>
                             <td class="text-center" colspan="12">
-                                Showed <span id="already-displayed-quantity">0</span> from <span id="all-calls-quantity">0</span>
+                                Showed <span id="already-displayed-quantity">
+                                    {{ (transactions.getItemNumberPerPage * (transactions.getCurrentPageNumber - 1)) + 1 }}-{{ transactions.getItemNumberPerPage * transactions.getCurrentPageNumber }}
+                                </span>
+                                from <span id="all-calls-quantity">{{ transactions.getTotalItemCount }}</span>
                             </td>
                         </tr>
                     </thead>
@@ -145,8 +148,14 @@
                                 <td>{{ transaction.comment }}</td>
                             </tr>
                         {% endfor %}
+
                     </tbody>
                 </table>
+
+                <div class="navigation">
+                    {{ knp_pagination_render(transactions) }}
+                </div>
+
             </div>
         </div>
     </div>
@@ -157,10 +166,10 @@
 
 
 <!--AJAX loading by click-->
-<div class="col-md-12 text-center">
-    <button id="load-more-btn" type="button" class="btn button_default button_blue load-more" style="color: #fff;" data-parts="" data-count="">
-        Show more
-    </button>
-</div>
+{#<div class="col-md-12 text-center">#}
+    {#<button id="load-more-btn" type="button" class="btn button_default button_blue load-more" style="color: #fff;" data-parts="" data-count="">#}
+        {#Show more#}
+    {#</button>#}
+{#</div>#}
 
 {% endblock %}
