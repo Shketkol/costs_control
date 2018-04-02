@@ -37,6 +37,10 @@ Encore
     .configureFilenames({
         images: '[path][name].[ext]'
     })
+
+    // Enable Vue.js
+    .addEntry('js/vue', './assets/js/vue.js')
+    .enableVueLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();
