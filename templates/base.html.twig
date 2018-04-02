@@ -34,9 +34,9 @@
 		    <div id="page-wrapper">
 		        <div class="container-fluid">
 
-		            {% block content %}{% endblock %}
-
-		            <!-- <?= $this->render('_right_bar') ?> -->
+					<div id="app">
+                        {% block content %}{% endblock %}
+					</div>
 
 		        </div>
 
@@ -50,6 +50,7 @@
             <script src="{{ asset('/build/app.js') }}"></script>
             <script src="{{ asset('/build/selectpicker.js') }}"></script>
             <script src="{{ asset('/build/sweetalerts.js') }}"></script>
+			<script src="{{ asset('/build/js/vue.js') }}"></script>
         {% endblock %}
     </body>
 </html>

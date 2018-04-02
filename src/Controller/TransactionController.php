@@ -22,17 +22,36 @@ class TransactionController extends Controller
     /**
      * @Route("/", name="transactions")
      */
-    public function index(UserInterface $user) : Response
+    public function index(UserInterface $user, Request $request) : Response
     {
         // Get all transactions for this user
-        $transactions = $this->getDoctrine()
-            ->getRepository(Transaction::class)
-            ->findBy(['user' => $user]);
+        $repository = $this->getDoctrine()
+            ->getRepository(Transaction::class);
+
+        $transactionsQuery = $repository
+            ->createQueryBuilder('t')
+            ->where('t.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('t.date', 'DESC')
+            ->addOrderBy('t.id', 'DESC')
+            ->addOrderBy('t.account', 'ASC')
+            ->getQuery()
+        ;
 
         // Add breadcrumbs
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("index_page"));
         $breadcrumbs->addItem("Transactions");
+
+        // Add pagination
+        $paginator  = $this->get('knp_paginator');
+        $transactions = $paginator->paginate(
+            $transactionsQuery,
+            $request->query->getInt('page', 1),
+            2
+        );
+
+//        $transactions->
 
         return $this->render('transaction/index.html.twig', ['transactions' => $transactions]);
     }

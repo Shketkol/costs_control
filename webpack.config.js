@@ -15,7 +15,7 @@ Encore
     .addEntry('auth', './assets/assets/auth.js')
     .addEntry('selectpicker', './assets/assets/selectpicker.js')
     .addEntry('sweetalerts', './assets/assets/sweetalerts.js')
-    // .addStyleEntry('css/app', './assets/css/app.scss')
+    // .addStyleEntry('css/app', './assets/css/common.scss')
 
     // uncomment if you use Sass/SCSS files
     .enableSassLoader()
@@ -37,6 +37,10 @@ Encore
     .configureFilenames({
         images: '[path][name].[ext]'
     })
+
+    // Enable Vue.js
+    .addEntry('js/vue', './assets/js/vue.js')
+    .enableVueLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();
