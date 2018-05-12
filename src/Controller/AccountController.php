@@ -108,6 +108,7 @@ class AccountController extends Controller
 
             $response['html'] = $tableRows;
         } catch (\Throwable $t) {
+            $response['status'] = 'error';
             $response['message'] = 'Account not found!';
         }
 

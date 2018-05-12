@@ -142,6 +142,11 @@ class User implements UserInterface, AdvancedUserInterface, \Serializable
         return $this->isActive;
     }
 
+    public function setIsActive(bool $enabled): void
+    {
+        $this->isActive = $enabled;
+    }
+
     /** @see \Serializable::serialize() */
     public function serialize()
     {

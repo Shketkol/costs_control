@@ -1,0 +1,45 @@
+App\Entity\User:
+  user_1:
+    username: timoffmax
+    password: '\$2y\$13\$VNySleB0jHB5lLnIQoedHOfclavME5QI7YLMd2usK4OpBfSp09BtW'
+    email: tim.off.max@gmail.com
+    isActive: true
+
+App\Entity\AccountType:
+  account_type_1:
+    name: cash
+
+  account_type_2:
+    name: card
+
+App\Entity\Account:
+  acc_1:
+    user: '@user_1'
+    type: '@account_type_1'
+    name: Cash
+    balance: 10000
+
+  acc_2:
+    user: '@user_1'
+    type: '@account_type_2'
+    name: MasterCard Gold
+    balance: 5000
+
+App\Entity\TransactionType:
+  transaction_type_1:
+    code: out
+    name: Cost
+
+  transaction_type_2:
+    code: in
+    name: Income
+
+App\Entity\Transaction:
+  transaction_{1..200}:
+    user: '@user_1'
+    account: '@acc_*'
+    account_balance: '@acc_*->getBalance()'
+    type: '@transaction_type_*'
+    sum: <transactionSum()>
+    comment: <transactionComment()>
+    date: <dateTimeBetween('2018-01-01', '2018-05-30')>

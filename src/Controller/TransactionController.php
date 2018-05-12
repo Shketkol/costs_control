@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\Account;
 use App\Entity\Transaction;
 use App\Form\TransactionType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -24,6 +26,7 @@ class TransactionController extends Controller
      */
     public function index(UserInterface $user, Request $request) : Response
     {
+        $this->addFlash('success', 'test');
         // Get all transactions for this user
         $repository = $this->getDoctrine()
             ->getRepository(Transaction::class);
@@ -48,10 +51,8 @@ class TransactionController extends Controller
         $transactions = $paginator->paginate(
             $transactionsQuery,
             $request->query->getInt('page', 1),
-            2
+            $this->container->getParameter('transactions.pagination.pageSize')
         );
-
-//        $transactions->
 
         return $this->render('transaction/index.html.twig', ['transactions' => $transactions]);
     }
@@ -88,8 +89,6 @@ class TransactionController extends Controller
             // Set account balance after transaction
             $currentBalance = $account->getBalance();
 
-            dump($transaction);
-
             switch ($transaction->getType()->getCode()) {
                 case 'in':
                     $newBalance = $currentBalance + $transaction->getSum();
@@ -119,5 +118,94 @@ class TransactionController extends Controller
         }
 
         return $this->render('transaction/new.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/delete/{id}/{page}", name="transaction_delete")
+     * @Method({"DELETE"})
+     *
+     * @param Request $request
+     * @param int $id
+     * @param int $page
+     * @return Response
+     */
+    public function delete(Transaction $transaction, UserInterface $user, int $page) : Response
+    {
+        $response = [
+            'status' => 'error',
+            'message' => null,
+            'html'
+        ];
+
+        try {
+            // Get transaction
+            $em = $this->getDoctrine()->getManager();
+            $result =  $em->getRepository(Transaction::class)->findOneBy([
+                'user' => $user,
+                'id' => $transaction,
+            ]);;
+
+            // Update account balance
+            if (!empty($result)) {
+                $transactionType = $result->getType()->getCode();
+                $account = $result->getAccount();
+                $sum = $result->getSum();
+
+                // Calculate new balance
+                if ($transactionType === 'out') {
+                    $newBalance = $account->getBalance() + $sum;
+                } elseif ($transactionType === 'in') {
+                    $newBalance = $account->getBalance() - $sum;
+                }
+
+                // Save new balance
+                $account->setBalance($newBalance);
+            }
+
+            // Delete transaction
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($transaction);
+            $em->flush();
+
+            $response['status'] = 'success';
+            $response['message'] = 'Transaction removed!';
+
+            // Get all transactions for this user
+            $repository = $this->getDoctrine()
+                ->getRepository(Transaction::class);
+
+            $transactionsQuery = $repository
+                ->createQueryBuilder('t')
+                ->where('t.user = :user')
+                ->setParameter('user', $user)
+                ->orderBy('t.date', 'DESC')
+                ->addOrderBy('t.id', 'DESC')
+                ->addOrderBy('t.account', 'ASC')
+                ->getQuery()
+            ;
+
+            // Add pagination
+            $paginator  = $this->get('knp_paginator');
+            $transactions = $paginator->paginate(
+                $transactionsQuery,
+                $page,
+                $this->container->getParameter('transactions.pagination.pageSize')
+            );
+
+            // Get view block (not whole template)
+            $template = $this->get('twig')->loadTemplate('transaction/index.html.twig');
+            $tableRows = $template->renderBlock('transactions', ['transactions' => $transactions]);
+
+            $response['html'] = $tableRows;
+        } catch (\Throwable $t) {
+            echo '<pre>';
+                var_dump($t->getMessage());
+            echo '<pre>';
+            exit;
+            $response['status'] = 'error';
+            $response['message'] = 'Transaction not found!';
+        }
+
+        return JsonResponse::create($response);
     }
 }

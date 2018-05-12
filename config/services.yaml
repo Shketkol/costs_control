@@ -3,6 +3,9 @@
 parameters:
     locale: 'en'
 
+    # Transactions
+    transactions.pagination.pageSize: 100
+
 services:
     # default configuration for services in *this* file
     _defaults:

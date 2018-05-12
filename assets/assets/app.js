@@ -20,5 +20,5 @@ require('../js/custom.min.js');
 require('../plugins/bower_components/styleswitcher/jQuery.style.switcher.js');
 
 // Images
-const imagesCtx = require.context('../images', false, /\.(png|jpg|jpeg|gif|ico|svg|webp)$/);
+const imagesCtx = require.context('../images', true, /\.(png|jpg|jpeg|gif|ico|svg|webp)$/);
 imagesCtx.keys().forEach(imagesCtx);
